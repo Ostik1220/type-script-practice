@@ -30,9 +30,6 @@ interface User {
 
 
 
-
-
-
 //uniontype
   type Arr = 10 | 20 | 30 
 //cortage
