@@ -1,4 +1,5 @@
 import "./App.css";
+import {RPG} from "./rpg"
 function App() {
   // впростому коді без реакту тайпскрипт треба компілювати в js, але я замітив в реакті тайпскрипт компілюється автоматично.
   // впростому коді він компілюєтся за командою tsc назвафайлу.ts і в індекс штмл треба додавати його js файл
@@ -115,70 +116,12 @@ function App() {
 
   // console.log(ErrorHandler("this is wrong"), typeMessage("hello"))
 
-  abstract class Character {
-    private lvl: number = 1;
-    constructor(public name: string, protected health: number, protected damage: number, public readonly id: number) {
-
-
-      if(health <= 0){
-        throw new Error("Health must be greater than 0");
-      }
-    }
-      showInfo = () =>{
-    console.log(`Name: ${this.name}, Health: ${this.health}, Damage: ${this.damage}, ID: ${this.id}, Level: ${this.lvl}`);
-  }
-
-  
-  checkHealth = () => {
-          if(this.health <= 0){
-            this.health = 0;
-       console.log(`${this.name} is dead, health: ${this.health}`);
-      } else {
-        console.log(`${this.name} is alive, health: ${this.health}`);
-      }
-  }
-
-  dealDamage = (target: Character) => {
-target.health -= this.damage;}
-  }
-
-  class Warrior extends Character {
-    constructor(name: string, health: number, damage: number, id: number) {
-      super(name, health, damage, id);
-    }
-
-   public override dealDamage = (target: Character) => {
-    // target.health -= this.damage;
-    // console.log('Warrior is dealing damage with sword!');
-    this.dealDamage(target);
-    }
-  }
-
-  const player = new Warrior("John", 100, 25, 1);
-  const enemy = new Warrior("Enemy", 80, 15, 2);
-
-  player.dealDamage(enemy);
-    player.dealDamage(enemy);
-      player.dealDamage(enemy);
-  enemy.checkHealth();
-
-  // console.log(player.name);
-  // console.log(player.id);
-  // console.log(player.lvl);
-
-  player.health = 999; // помилка, бо health - protected, доступний тільки в класі і його наслідникахq
-  player.damage = 999; // помилка, бо damage - private, доступний тільки в класі
-
-player.id = 1029384756; // помилка, бо id - readonly, його можна тільки читати, але не змінювати
-
-  player.showInfo(); // помилка, бо showInfo - не визначений в класі Character, треба додати його в клас
-
-  console.log(player); // помилка, бо damage - private, доступний тільки в класі
-  return (
+   return (
     <>
       <div className="hero">
-        <h1>{user.name}</h1>
-        <p>Age: {user.age}</p>
+        {/* <h1>{user.name}</h1> */}
+        {/* <p>Age: {user.age}</p> */}
+        
       </div>
       <ul>
         {/* {users.map((user, index) => (
@@ -189,6 +132,7 @@ player.id = 1029384756; // помилка, бо id - readonly, його можн
           </li>
         ))} */}
       </ul>
+      <RPG />
     </>
   );
 }
