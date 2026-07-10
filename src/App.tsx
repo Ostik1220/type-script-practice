@@ -7,6 +7,8 @@ function App() {
   // const number: number = 5;
   // const something: undefined = undefined;
   // const string: string = "Hello, TypeScript!";
+  // const any : any = "This can be any type"; //any - будь-який тип, можна присвоїти будь-яке значення і використовувати без перевірки типу
+  // const unknown : unknown = "This can be any type"; //unknown - невідомий тип, можна присвоїти будь-яке значення, але не можна використовувати без перевірки типу
 
   type Departmet = "IT" | "HR" | "Sales"; //union type - обмежує значення до певних рядків
 
