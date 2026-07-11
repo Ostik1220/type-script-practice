@@ -73,13 +73,18 @@ function App() {
   date2 = date2.toLowerCase(); // працює, бо any - будь-який тип, можна використовувати без перевірки типу
 
   //uniontype
-  type Arr = 10 | 20 | 30;
+  type Arr = number[] | string[];
   //cortage
   type Arr2 = [number, number, number] | undefined;
 
+  //litaral type - обмежує значення до певних рядків або чисел
+  type Arr3 = "qwe" | "asd" | "zxc";
+
   // const arr = [1, 2, 3, 4, 5]; непідходить
-  // const arr: Arr = [10, 20, 30]; підходить для uniontype
+  // const arr: Arr = [10, 20, 30, "hello"]; підходить для uniontype
   // const arr: Arr2 = [102, 3320, 35670]; підходить для cortage
+  //const arr: Arr3 = "qwe"; підходить для litaral type
+
 
   const deliveryStatus  = {
     comleted: "Completed",
@@ -118,13 +123,36 @@ function App() {
 
   // console.log(ErrorHandler("this is wrong"), typeMessage("hello"))
 
-   return (
+
+   const input = document.querySelector<HTMLInputElement>("input")
+  // const input = document.querySelector("input") as HTMLInputElement; //as HTMLInputElement - робить елемент input типу HTMLInputElement, тобто можна використовувати властивості input, які не доступні для HTMLElement
+
+  console.log(input?.value); 
+  type ElementType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement; //union type - обмежує значення до певних типів елементів
+
+  function takeElement<T extends ElementType>(selector:string){
+const element = document.querySelector<T>(selector);
+if(!element){
+  throw new Error(`Element with selector ${selector} not found`);
+}
+return element;
+  }
+
+  const inputValue = takeElement<HTMLInputElement>("input").value; //використання generic типу для функції takeElement, щоб повернути елемент типу HTMLInputElement
+   
+  console.log(inputValue);
+
+  type arrayUser = string | number | boolean | User; //union type - обмежує значення до певних типів
+
+  const array: Array<arrayUser> = ["hello", 42, true, user];
+  return (
     <>
       <div className="hero">
         {/* <h1>{user.name}</h1> */}
         {/* <p>Age: {user.age}</p> */}
         
       </div>
+      input: <input type="text" />
       <ul>
         {/* {users.map((user, index) => (
           <li key={index}>
